@@ -1,29 +1,27 @@
-# EC2 Streamlit Deploy
+# AWS Streamlit Deployment & Cleanup Automation
 
-This repo automates deploying a Streamlit app on an AWS EC2 instance using shell scripts.
+This repository automates end-to-end deployment of a Streamlit app on AWS EC2 and provides a full cleanup script to ensure no resources incur billing after experimentation.
 
-## Structure
+---
 
-- `create_ec2_instance.sh` – Launch EC2 instance
-- `setup_key_permissions.sh` – Set SSH key permissions
-- `deploy_streamlit_in_ec2.sh` – Install dependencies and launch Streamlit app
-- `streamlit_app/` – Contains your `app.py` Streamlit code
+## 🔧 Prerequisites
 
-## Deployment Instructions
+- AWS CLI configured (`aws configure`)
+- EC2 key pair ready or created during deployment
+- IAM permissions for EC2, S3, and related services
+- Streamlit app ready under `streamlit_app/`
 
-1. Launch EC2:
-   ```bash
-   ./create_ec2_instance.sh
-   ```
+---
 
-2. Set key permissions:
-   ```bash
-   ./setup_key_permissions.sh
-   ```
+## 🚀 Scripts
 
-3. Deploy the app:
-   ```bash
-   ./deploy_streamlit_in_ec2.sh
-   ```
+### 1. `deploy_streamlit_in_ec2.sh`
 
-Then visit: `http://<your-ec2-public-ip>:8501`
+- Creates EC2 instance
+- Installs Python, pip, Streamlit
+- Deploys your app from `streamlit_app/`
+- Prints access URL (`http://<EC2_PUBLIC_IP>:8501`)
+
+**Run**:
+```bash
+bash deploy_streamlit_in_ec2.sh
